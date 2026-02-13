@@ -1,0 +1,6 @@
+{
+  "extends": "markdownlint/style/prettier",
+  "no-hard-tabs": true,
+  "no-multiple-spaces": true,
+  "MD013": false
+}

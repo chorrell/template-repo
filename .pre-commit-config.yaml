@@ -25,6 +25,6 @@ repos:
       - id: mixed-line-ending
 
   - repo: https://github.com/woodruffw/zizmor-pre-commit
-    rev: v1.26.1
+    rev: v1.27.0
     hooks:
       - id: zizmor

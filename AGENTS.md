@@ -19,7 +19,8 @@ repositories.
     ├── dependabot.yml          # github-actions + pre-commit, monthly, grouped, 7-day cooldown
     ├── zizmor.yml              # chorrell/* may be tag-pinned; everything else hash-pinned
     └── workflows/
-        └── markdownlint.yml    # PR stub calling chorrell/workflows markdownlint.yml@v1
+        ├── markdownlint.yml    # PR stub calling chorrell/workflows markdownlint.yml@v1
+        └── zizmor.yml          # PR + main stub calling chorrell/workflows zizmor.yml@v1
 ```
 
 ## Rules
@@ -39,7 +40,9 @@ repositories.
   [chorrell/github-settings](https://github.com/chorrell/github-settings)
   (`repos.yaml`). Don't change them in the GitHub UI.
 - Run `pre-commit run --all-files` before pushing (the markdownlint hook needs
-  Docker). CI runs markdownlint on pull requests to `main`.
+  Docker). CI runs markdownlint on pull requests to `main`, and zizmor on
+  every pull request and push to `main`. `zizmor / zizmor` is a required check
+  on every repository, so don't remove the zizmor stub.
 - Dependabot opens grouped monthly PRs: `ci(deps): ...` for Actions,
   `chore(deps): ...` for pre-commit hooks.
 - Commits and PR titles use conventional commits (`feat: ...`, `ci: ...`,

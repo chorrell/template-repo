@@ -13,6 +13,7 @@ starts with the same baseline instead of copying files by hand.
 | [`.pre-commit-config.yaml`](.pre-commit-config.yaml) | actionlint, gitleaks, markdownlint-cli2, zizmor and the standard `pre-commit-hooks` hygiene checks |
 | [`.github/dependabot.yml`](.github/dependabot.yml) | Monthly, grouped updates for GitHub Actions and pre-commit hooks, with a 7-day cooldown |
 | [`.github/workflows/markdownlint.yml`](.github/workflows/markdownlint.yml) | Lints Markdown on pull requests with the shared [chorrell/workflows](https://github.com/chorrell/workflows) workflow |
+| [`.github/workflows/zizmor.yml`](.github/workflows/zizmor.yml) | Audits GitHub Actions workflows with zizmor on pull requests and pushes to `main`, using the shared chorrell/workflows workflow |
 | [`.github/zizmor.yml`](.github/zizmor.yml) | Lets `chorrell/*` reusable workflows be pinned by tag; everything else must be pinned by commit hash |
 | [`.github/CODEOWNERS`](.github/CODEOWNERS) | Requests my review on every change |
 | [`.markdownlint.yaml`](.markdownlint.yaml) | Markdown lint rules (line length is not enforced) |
@@ -36,7 +37,8 @@ Then:
 5. Check that `CODEOWNERS` and `LICENSE` still fit.
 6. Add the repository to
    [chorrell/github-settings](https://github.com/chorrell/github-settings)
-   (its daily bot proposes it), with the CI checks it should require.
+   (its daily bot proposes it), with any CI checks it should require beyond
+   `zizmor / zizmor`, which every repository requires.
 
 ## Local development
 

@@ -8,7 +8,7 @@ repositories.
 ## Structure
 
 ```text
-├── .pre-commit-config.yaml     # actionlint, gitleaks, markdownlint-cli2 (Docker), hygiene hooks, zizmor
+├── .pre-commit-config.yaml     # gitleaks, markdownlint-cli2 (Docker), hygiene hooks, zizmor
 ├── .markdownlint.yaml          # MD013 (line length) disabled
 ├── .gitignore                  # Language-agnostic: OS files, .env*, editor dirs, .claude/settings.local.json
 ├── .gitattributes              # * text=auto
@@ -35,6 +35,11 @@ repositories.
   Workflows here are short stubs that own their triggers, `permissions` and
   `concurrency` and call the shared workflow by tag (`@v1`). Third-party actions
   are pinned by commit hash with a version comment; zizmor enforces this.
+- **zizmor is the workflow linter.** Reference actions and reusable workflows
+  in the same repository with GitHub's `$/` self-repository syntax
+  (`uses: $/.github/workflows/build.yml`), not `./`, as zizmor's
+  `self-repository` audit requires. actionlint isn't used because it rejects
+  `$/` ([rhysd/actionlint#711](https://github.com/rhysd/actionlint/issues/711)).
 - **Repository settings aren't configured here.** Merge settings, rulesets and
   required status checks are managed by Terraform in
   [chorrell/github-settings](https://github.com/chorrell/github-settings)

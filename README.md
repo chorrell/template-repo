@@ -10,7 +10,7 @@ starts with the same baseline instead of copying files by hand.
 
 | File | Purpose |
 | --- | --- |
-| [`.pre-commit-config.yaml`](.pre-commit-config.yaml) | actionlint, gitleaks, markdownlint-cli2, zizmor and the standard `pre-commit-hooks` hygiene checks |
+| [`.pre-commit-config.yaml`](.pre-commit-config.yaml) | gitleaks, markdownlint-cli2, zizmor and the standard `pre-commit-hooks` hygiene checks. zizmor is the workflow linter; actionlint isn't used because it rejects GitHub's `$/` self-repository `uses:` syntax ([rhysd/actionlint#711](https://github.com/rhysd/actionlint/issues/711)) |
 | [`.github/dependabot.yml`](.github/dependabot.yml) | Monthly, grouped updates for GitHub Actions and pre-commit hooks, with a 7-day cooldown |
 | [`.github/workflows/markdownlint.yml`](.github/workflows/markdownlint.yml) | Lints Markdown on pull requests with the shared [chorrell/workflows](https://github.com/chorrell/workflows) workflow |
 | [`.github/workflows/zizmor.yml`](.github/workflows/zizmor.yml) | Audits GitHub Actions workflows with zizmor on pull requests and pushes to `main`, using the shared chorrell/workflows workflow |

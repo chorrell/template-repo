@@ -16,10 +16,12 @@ repositories.
 ├── LICENSE                     # MPL-2.0
 └── .github/
     ├── CODEOWNERS              # * @chorrell
-    ├── dependabot.yml          # github-actions + pre-commit, monthly, grouped, 7-day cooldown
+    ├── dependabot.yml          # github-actions + pre-commit in one monthly `tooling` PR, 7-day cooldown
     ├── zizmor.yml              # chorrell/* may be tag-pinned; everything else hash-pinned
     └── workflows/
         ├── markdownlint.yml    # PR stub calling chorrell/workflows markdownlint.yml@v1
+        ├── pre-commit.yml      # PR stub calling chorrell/workflows pre-commit.yml@v1
+        ├── dependabot-automerge.yml # PR stub: auto-merges minor/patch `tooling` PRs
         └── zizmor.yml          # PR + main stub calling chorrell/workflows zizmor.yml@v1
 ```
 
@@ -44,12 +46,17 @@ repositories.
   required status checks are managed by Terraform in
   [chorrell/github-settings](https://github.com/chorrell/github-settings)
   (`repos.yaml`). Don't change them in the GitHub UI.
-- Run `pre-commit run --all-files` before pushing (the markdownlint hook needs
+- Run `prek run --all-files` before pushing (the markdownlint hook needs
   Docker). CI runs markdownlint on pull requests to `main`, and zizmor on
   every pull request and push to `main`. `zizmor / zizmor` is a required check
   on every repository, so don't remove the zizmor stub.
-- Dependabot opens grouped monthly PRs: `ci(deps): ...` for Actions,
-  `chore(deps): ...` for pre-commit hooks.
+- Dependabot opens one monthly `chore(deps): bump the tooling group ...` PR
+  for Actions and pre-commit hooks. `dependabot-automerge.yml` merges it once
+  checks pass if every update is minor or patch; majors wait for review. Add
+  other ecosystems (uv, Docker, Terraform) as separate entries, outside the
+  `tooling` group, so they aren't auto-merged. A repository that publishes or
+  deploys on pushes to `main` should drop the auto-merge stub, because merges
+  made with `GITHUB_TOKEN` don't trigger push workflows.
 - Commits and PR titles use conventional commits (`feat: ...`, `ci: ...`,
   `chore(deps): ...`). Branch from `main` with a `feature/` prefix. PRs are
   squash-merged, so keep PR bodies short and focused on intent.

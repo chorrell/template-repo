@@ -43,9 +43,10 @@ repositories.
   `self-repository` audit requires. actionlint isn't used because it rejects
   `$/` ([rhysd/actionlint#711](https://github.com/rhysd/actionlint/issues/711)).
 - **Repository settings aren't configured here.** Merge settings, rulesets and
-  required status checks are managed by Terraform in
-  [chorrell/github-settings](https://github.com/chorrell/github-settings)
-  (`repos.yaml`). Don't change them in the GitHub UI.
+  required status checks are managed by Terraform, in `repos.yaml` of
+  `chorrell/github-settings` for `chorrell` repositories and
+  [horrell-consulting/github-settings](https://github.com/horrell-consulting/github-settings)
+  for `horrell-consulting` repositories. Don't change them in the GitHub UI.
 - Run `prek run --all-files` before pushing (the markdownlint hook needs
   Docker). CI runs markdownlint on pull requests to `main`, and zizmor on
   every pull request and push to `main`. `zizmor / zizmor` is a required check

@@ -37,10 +37,17 @@ Then:
    terraform, ...) and Dependabot ecosystems (`docker`, `uv`, `terraform`, ...).
 4. Add language-specific entries to `.gitignore`.
 5. Check that `CODEOWNERS` and `LICENSE` still fit.
-6. Add the repository to
-   [chorrell/github-settings](https://github.com/chorrell/github-settings)
-   (its daily bot proposes it), with any CI checks it should require beyond
-   `zizmor / zizmor`, which every repository requires.
+6. Add the repository to the settings repo for its owner, with any CI checks
+   it should require beyond `zizmor / zizmor`, which every repository
+   requires. Each one's daily bot proposes new repositories:
+   - `chorrell` repositories: `chorrell/github-settings` (private)
+   - `horrell-consulting` repositories:
+     [horrell-consulting/github-settings](https://github.com/horrell-consulting/github-settings)
+
+For a repository in the `horrell-consulting` organization, use
+`gh repo create horrell-consulting/<name> ...`. Organization repositories must
+be public, because the organization's plan only allows rulesets on public
+repositories.
 
 ## Local development
 
